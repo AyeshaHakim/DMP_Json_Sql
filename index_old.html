@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Research Data Management Plans</title>
+        <link rel="stylesheet" href="form_css/style1.css">
+         <script type="text/javascript">
+             function checktext() {
+                 var x = document.getElementById("json_file").value;
+                 var _validFileExtensions = [".json"];
+                 var isValid=false;
+                 if (x.length > 0)
+                 {
+                     if(x.split('.')[1]=='json')
+                         isValid=true;
+                 }
+                 else
+                 {
+                     isValid=false;
+                 }
+                 if (isValid==false)
+                 {
+                     alert("Please select valid " + _validFileExtensions + " file");
+                 }
+                 return isValid;
+             }
+          </script>
+        </head>
+        <body class="form-module">
+        <h1 class="form-module pen-title">Research Data Management Plans</h1>
+        <form method="post" enctype="multipart/form-data" onsubmit="return checktext();">
+            <input type="file" name="json_file" id="json_file"> <br>
+            <h3 class="pen-title">Import Json file contents into Database</h3>
+            <input type="submit" class="button button2" name="btn_sql" id="uploaddb" value="Import Json into Database" onclick="return checktext();" formaction="dmp_json_mysql.php">
+            <h3 class="pen-title">Export Json file contents directly to Word Document (.docx)</h3>
+            <input type="submit" class="button button2" name="btn_doc" id="uploaddoc" value="Export Json into Word Directly" onclick="return checktext();" formaction="direct_export_dmp_to_doc.php">
+            <h3 class="pen-title">Export Json file contents directly to pdf Document (.pdf)</h3>
+            <input type="submit" class="button button2" name="btn_pdf" id="uploadpdf" value="Export Json into Pdf Directly" onclick="return checktext();" formaction="direct_export_dmp_to_pdf.php">
+        </form>
+        <h3 class="form-module-input pen-title">Export last imported Json file contents from database to Word Document (.docx)</h3>
+        <form action="export_dmp_to_doc.php" method="post" enctype="multipart/form-data" onsubmit="return checktext();">
+            <input type="submit" class="button button2" name="export" value="Export to .docx"  onsubmit="return checktext();">
+        </form>
+        <h3 class="form-module-input pen-title">View all DMPs</h3>
+        <form action="view_all_dmps.php" method="post" enctype="multipart/form-data">
+            <input type="submit" class="button button2" name="view" value="View all DMPs">
+        </form>
+        </body>
+</html>

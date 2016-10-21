@@ -1,53 +1,126 @@
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<html>
-    <head>
-        <title>Research Data Management Plans</title>
-        <link rel="stylesheet" href="form_css/style1.css">
-         <script type="text/javascript">
-             function checktext() {
-                 var x = document.getElementById("json_file").value;
-                 var _validFileExtensions = [".json"];
-                 var isValid=false;
-                 if (x.length > 0)
-                 {
-                     if(x.split('.')[1]=='json')
-                         isValid=true;
-                 }
-                 else
-                 {
-                     isValid=false;
-                 }
-                 if (isValid==false)
-                 {
-                     alert("Please select valid " + _validFileExtensions + " file");
-                 }
-                 return isValid;
-             }
-          </script>
-        </head>
-        <body class="form-module">
-        <h1 class="form-module pen-title">Research Data Management Plans</h1>
-        <form method="post" enctype="multipart/form-data" onsubmit="return checktext();">
-            <input type="file" name="json_file" id="json_file"> <br>
-            <h3 class="pen-title">Import Json file contents into Database</h3>
-            <input type="submit" class="button button2" name="btn_sql" id="uploaddb" value="Import Json into Database" onclick="return checktext();" formaction="dmp_json_mysql.php">
-            <h3 class="pen-title">Export Json file contents directly to Word Document (.docx)</h3>
-            <input type="submit" class="button button2" name="btn_doc" id="uploaddoc" value="Export Json into Word Directly" onclick="return checktext();" formaction="direct_export_dmp_to_doc.php">
-            <h3 class="pen-title">Export Json file contents directly to pdf Document (.pdf)</h3>
-            <input type="submit" class="button button2" name="btn_pdf" id="uploadpdf" value="Export Json into Pdf Directly" onclick="return checktext();" formaction="direct_export_dmp_to_pdf.php">
-        </form>
-        <h3 class="form-module-input pen-title">Export last imported Json file contents from database to Word Document (.docx)</h3>
-        <form action="export_dmp_to_doc.php" method="post" enctype="multipart/form-data" onsubmit="return checktext();">
-            <input type="submit" class="button button2" name="export" value="Export to .docx"  onsubmit="return checktext();">
-        </form>
-        <h3 class="form-module-input pen-title">View all DMPs</h3>
-        <form action="view_all_dmps.php" method="post" enctype="multipart/form-data">
-            <input type="submit" class="button button2" name="view" value="View all DMPs">
-        </form>
-        </body>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <title>Research Data Management Planning Tool</title>
+
+  <!-- CSS  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+</head>
+<body>
+  <nav class="light-blue darken-4" role="navigation">
+    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">Logo</a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="#">Navbar Link</a></li>
+      </ul>
+
+      <ul id="nav-mobile" class="side-nav">
+        <li><a href="#">Navbar Link</a></li>
+      </ul>
+      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+    </div>
+  </nav>
+  <div class="section no-pad-bot" id="index-banner">
+    <div class="container">
+      <br><br>
+      <h1 class="header center orange-text">Research Data Management Planning Tool</h1>
+      <div class="row center">
+        <h5 class="header col s12 light">Create, review, and share data management plans that meet institutional and funder requirements.</h5>
+      </div>
+      <div class="row center">
+        <a href="view_all_dmps.php" id="download-button" class="btn-large waves-effect waves-light orange">Get Started</a>
+      </div>
+      <br><br>
+
+    </div>
+  </div>
+
+
+  <div class="container">
+    <div class="section">
+
+      <!--   Icon Section   -->
+      <div class="row">
+        <div class="col s12 m4">
+          <div class="icon-block">
+            <h2 class="center light-blue-text darken-4"><i class="material-icons">flash_on</i></h2>
+            <h5 class="center"><a href=index_js.html>Create DMP</a></h5>
+
+            <p class="light">We did most of the heavy lifting for you to provide a default stylings that incorporate our custom components. Additionally, we refined animations and transitions to provide a smoother experience for developers.</p>
+          </div>
+        </div>
+
+        <div class="col s12 m4">
+          <div class="icon-block">
+            <h2 class="center light-blue-text darken-4"><i class="material-icons">group</i></h2>
+            <h5 class="center"><a href="export_dmp_to_formatted_webpage.php"> View DMP</a></h5>
+
+            <p class="light">By utilizing elements and principles of Material Design, we were able to create a framework that incorporates components and animations that provide more feedback to users. Additionally, a single underlying responsive system across all platforms allow for a more unified user experience.</p>
+          </div>
+        </div>
+
+        <div class="col s12 m4">
+          <div class="icon-block">
+            <h2 class="center light-blue-text darken-4"><i class="material-icons">settings</i></h2>
+            <h5 class="center"><a href="export_dmp_to_formatted_pdf.php"> Export DMP</a></h5>
+
+            <p class="light">We have provided detailed documentation as well as specific code examples to help new users get started. We are also always open to feedback and can answer any questions a user may have about Materialize.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <br><br>
+
+    <div class="section">
+
+    </div>
+  </div>
+
+  <footer class="page-footer orange">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+          <h5 class="white-text">Centre for eResearch</h5>
+          <p class="grey-text text-lighten-4">The Centre for eResearch is a cross-faculty research centre, hosted within the Faculty of Science. We develop new ways to apply computer and information sciences to all research and science disciplines, both at the University of Auckland and within nationwide research programmes. We aim to enhance the understanding of research processes and the delivery of research computing services.</p>
+
+
+        </div>
+        <div class="col l3 s12">
+          <h5 class="white-text">Our Centre</h5>
+          <ul>
+            <li><a class="white-text" href="#!">Link 1</a></li>
+            <li><a class="white-text" href="#!">Link 2</a></li>
+            <li><a class="white-text" href="#!">Link 3</a></li>
+            <li><a class="white-text" href="#!">Link 4</a></li>
+          </ul>
+        </div>
+        <div class="col l3 s12">
+          <h5 class="white-text">Our People</h5>
+          <ul>
+            <li><a class="white-text" href="#!">Link 1</a></li>
+            <li><a class="white-text" href="#!">Link 2</a></li>
+            <li><a class="white-text" href="#!">Link 3</a></li>
+            <li><a class="white-text" href="#!">Link 4</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+      Copyright:  <a class="orange-text text-lighten-3" href="http://www.eresearch.auckland.ac.nz/en/centre-for-eresearch.html">Centre for eResearch</a>
+      </div>
+    </div>
+  </footer>
+
+
+  <!--  Scripts-->
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="../js/materialize.js"></script>
+  <script src="../js/init.js"></script>
+
+  </body>
 </html>

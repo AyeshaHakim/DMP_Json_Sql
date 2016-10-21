@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+
+<html lang="en" ng-app="dmpOnlineTool">
+
+    <head>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+        <title>DMPOnlineTool</title>
+
+        <!-- Angular Material CSS -->
+        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
+
+        <!-- Local CSS -->
+        <link href="css/DMPOnlineTool.css" rel="stylesheet" type="text/css">
+
+        <!-- Icons -->
+        <!-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
+
+        <!-- Angular Material Dependencies -->
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-animate.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-aria.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-route.js"></script>
+
+        <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore.js"></script> -->
+
+        <!-- Angular Material -->
+        <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.js"></script>
+
+        <!-- Angular file upload -->
+        <script src="js/node_modules/ng-file-upload/dist/ng-file-upload-shim.js"></script>
+        <script src="js/node_modules/ng-file-upload/dist/ng-file-upload.js"></script>
+
+        <!-- Angular doc preview -->
+
+        <script src="js/DMPOnlineTool.js"></script>
+
+    </head>
+
+    <body ng-controller="formCtrl">
+
+        <md-content class="formContent" layout="column" ng-cloak>
+
+            <h2 class="formTitle" href="#projectDetails">Project Details</h2>
+            <br>
+            <dmp-input ng-model="userDataService.scratch.dmp.projectDetails.title"></dmp-input>
+            <br>
+            <dmp-input ng-model="userDataService.scratch.dmp.projectDetails.description" inputtype="textarea" inputtags="rows='3'"></dmp-input>
+            <br>
+            <dmp-input ng-model="userDataService.scratch.dmp.projectDetails.fieldOfResearch" inputtype="md-chips" inputtags="flex='100' md-autocomplete-snap='width'"></dmp-input>
+            <br>
+            <div layout="row">
+                <dmp-input ng-model="userDataService.scratch.dmp.projectDetails.startDate" inputtype="md-datepicker"></dmp-input>
+                <dmp-input ng-model="userDataService.scratch.dmp.projectDetails.endDate" inputtype="md-datepicker" inputtags="md-placeholder='Ongoing' ng-required='false'"></dmp-input>
+            </div>
+            <dmp-input ng-model="userDataService.scratch.dmp.ethicsRequired" inputtype="md-checkbox"></dmp-input>
+            <dmp-input ng-model="userDataService.scratch.dmp.iwiConsultationRequired" inputtype="md-checkbox"></dmp-input>
+            <br>
+            <div layout="row" layout-align="end center">
+                <md-button ng-disabled="!userDataService.hasUnsavedChanges('projectDetails')" ng-click="saveScratchChanges('projectDetails')">
+                    Save
+                </md-button>
+                <md-button ng-disabled="!userDataService.hasUnsavedChanges('projectDetails')" ng-click="cancelScratchChanges('projectDetails')">
+                    Cancel
+                </md-button>
+            </div>
+
+            <h2 class="formTitle" href="#contributor">Contributors</h2>
+            <dmp-details-card type="contributor"></dmp-details-card>
+            <div layout="row" layout-wrap>
+                <div flex="100" flex-gt-xs="50" flex-gt-sm="33" ng-repeat="contributor in userDataService.dmp.contributor">
+                    <dmp-card cardindex="{{$index}}" type="contributor"></dmp-card>
+                </div>
+                <dmp-card flex="100" flex-gt-xs="50" flex-gt-sm="33" type="contributor" addnew="true"></dmp-card>
+            </div>
+
+            <!-- <h2 class="formTitle" href="#document">Reference Documents</h2>
+                <dmp-details-card type="document"></dmp-details-card>
+                <div layout="row" layout-wrap>
+                    <div flex="100" flex-gt-xs="50" flex-gt-sm="33" ng-repeat="document in userDataService.dmp.document">
+                        <dmp-card cardindex="{{$index}}" type="document"></dmp-card>
+                    </div>
+                    <dmp-card flex="100" flex-gt-xs="50" flex-gt-sm="33" type="document" addnew="true"></dmp-card>
+                </div> -->
+
+            <h2 class="formTitle" href="#funding">Funding</h2>
+            <dmp-details-card type="funder"></dmp-details-card>
+            <div layout="row" layout-wrap>
+                <div flex="100" flex-gt-xs="50" flex-gt-sm="33" ng-repeat="funder in userDataService.dmp.funder">
+                    <dmp-card cardindex="{{$index}}" type="funder"></dmp-card>
+                </div>
+                <dmp-card flex="100" flex-gt-xs="50" flex-gt-sm="33" type="funder" addnew="true"></dmp-card>
+            </div>
+
+            <h2 class="formTitle" href="#dataAsset">Data Assets</h2>
+            <dmp-details-card type="dataAsset"></dmp-details-card>
+            <div layout="row" layout-wrap>
+                <div flex="100" flex-gt-xs="50" ng-repeat="dataAsset in userDataService.dmp.dataAsset">
+                    <dmp-card cardindex="{{$index}}" type="dataAsset"></dmp-card>
+                </div>
+                <dmp-card flex="100" flex-gt-xs="50" type="dataAsset" addnew="true"></dmp-card>
+            </div>
+        </md-content>
+    </body>
+
+</html>
